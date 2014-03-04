@@ -19,9 +19,10 @@ libcurl4-openssl-dev:
     - installed
 
 
-{{php_fpm.pkg}}:
+php:
   pkg:
     - installed
+    - name: {{php_fpm.pkg}}
 
 
 /var/run/php5-fpm:
@@ -80,7 +81,7 @@ libcurl4-openssl-dev:
       - service: supervisor
     - require:
       - pkg: nginx
-      - pkg: {{ php_fpm.pkg }}
+      - pkg: php
 
 
 {% for pool_name, pool_config in php_fpm.pools.iteritems() %}
@@ -107,7 +108,7 @@ libcurl4-openssl-dev:
       pool_name: {{ pool_name }}
     - require:
       - pkg: nginx
-      - pkg: {{ php_fpm.pkg }}
+      - pkg: php
       - user: {{ php_fpm.pools[pool_name].user }}
     - watch_in:
       - supervisord: supervise-{{pool_name}}
