@@ -1,0 +1,35 @@
+{% set php_fpm = salt['grains.filter_by']({
+    'Debian': {
+            'session': {
+                'cookie_secure': 'true',
+                'cookie_httponly': 'true',
+            },
+            'memory_limit': '128M',
+            'extensions':[],
+            'zend_extensions':[],
+            'pkg': 'dsd-php5',
+            'pools': {
+                'www': {
+                    'absent': True,
+                },
+                'default': {
+                    'user': 'nginx',
+                    'group': 'nginx',
+                    'session': {
+                        'save_path': '/var/lib/php/session',
+                        'name': 'change_me',
+                    },
+                    'pm' : {
+                        'type': 'dynamic',
+                        'max_children': 4,
+                        'start_servers': 2,
+                        'min_spare_servers': 2,
+                        'max_spare_servers': 2,
+                        'max_requests': 10,
+                    }
+                },
+            },
+    },
+}, merge=salt['pillar.get']('php-fpm',{})) %}
+
+{# change default pkg to ubuntu one, not dsd #}
