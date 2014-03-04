@@ -6,7 +6,7 @@ include:
   - .devel
   - supervisor
   - nginx
-  - repos.pkgrepo_client
+  - repos
 
 
 libxml2-dev:
