@@ -1,7 +1,7 @@
 {% from "php-fpm/map.jinja" import php_fpm with context %}
 {% from 'supervisor/lib.sls' import supervise with context %}
 
-{% macro php_fpm_supervised_pool(pool_name) %}
+{% macro php_fpm_supervised_pool(pool_name, logship=False) %}
 /etc/php5/fpm/pool.d/{{pool_name}}.conf:
   file:
     - managed
@@ -26,7 +26,16 @@
              user='root',
              supervise=True,
              working_dir="/",
-             log_dir="/var/log/" + pool_name
+             log_dir="/var/log/" + pool_name,
+             logship=logship
              ) }}
+
+
+{% if logship %}
+{% from 'logging/lib.sls' import logship with context %}
+{{ logship(pool_name+'-php-fpm-master.log', '/var/log/'+pool_name+'/php-fpm-master.log', 'php-fpm', ['php-fpm', pool_name, 'master'], 'json') }}
+{{ logship(pool_name+'-php-fpm-error.log', '/var/log/'+pool_name+'/php-fpm-error.log', 'php-fpm', ['php-fpm', pool_name, 'error'], 'json') }}
+{% endif %}
+
 
 {% endmacro %}

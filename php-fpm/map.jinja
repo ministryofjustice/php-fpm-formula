@@ -1,7 +1,7 @@
 {% set php_fpm = salt['grains.filter_by']({
     'Debian': {
             'session': {
-                'cookie_secure': 'true',
+                'cookie_secure': 'false',
                 'cookie_httponly': 'true',
             },
             'memory_limit': '128M',
