@@ -32,7 +32,7 @@
 
 
 {% if logship %}
-{% from 'logging/lib.sls' import logship with context %}
+{% from "logstash/lib.sls" import logship with context %}
 {{ logship(pool_name+'-php-fpm-master.log', '/var/log/'+pool_name+'/php-fpm-master.log', 'php-fpm', ['php-fpm', pool_name, 'master'], 'json') }}
 {{ logship(pool_name+'-php-fpm-error.log', '/var/log/'+pool_name+'/php-fpm-error.log', 'php-fpm', ['php-fpm', pool_name, 'error'], 'json') }}
 {% endif %}
