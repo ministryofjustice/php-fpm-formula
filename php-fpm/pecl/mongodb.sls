@@ -8,4 +8,4 @@ pecl-install-mongo:
   cmd:
     - run
     - unless: /usr/local/bin/pecl list | grep mongo
-    - name: /usr/local/bin/pecl install mongo
+    - name: yes | /usr/local/bin/pecl install mongo
