@@ -63,6 +63,16 @@ php:
       - file: /etc/php5
 
 
+/etc/php5/fpm/pool.d:
+  file:
+    - directory
+    - mode: 775
+    - user: root
+    - group: root
+    - require:
+      - file: /etc/php5/fpm
+
+
 /etc/php5/fpm/php-fpm.conf:
   file:
     - absent
@@ -90,6 +100,8 @@ php:
 /etc/php5/fpm/pool.d/{{pool_name}}.conf:
   file:
     - absent
+    - require:
+      - file: /etc/php5/fpm/pool.d
     - watch_in:
       - service: supervisor
 
