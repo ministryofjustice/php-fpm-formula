@@ -20,9 +20,29 @@
       - supervisord: supervise-{{pool_name}}
 
 
+# Ensure our php-fpm scripts directory exists.
+/srv/scripts/php-fpm:
+  file.directory:
+    - user: root
+    - group: root
+    - mode: 755
+    - makedirs: True
+
+# Create a start bash script for each service in the pool.
+/srv/scripts/php-fpm/start-{{pool_name}}.sh:
+  file:
+    - managed
+    - source: salt://php-fpm/templates/start.sh
+    - user: root
+    - group: root
+    - mode: 744
+    - template: jinja
+    - context:
+      pool_name: {{ pool_name }}
+
+# Call the bash script created above to start php-fpm.
 {{ supervise(pool_name,
-             cmd="/usr/local/sbin/php-fpm",
-	         args="-F --fpm-config=/etc/php5/fpm/pool.d/" + pool_name + ".conf",
+             cmd="/srv/scripts/php-fpm/start-" + pool_name + ".sh",
              user='root',
              supervise=True,
              working_dir="/",
