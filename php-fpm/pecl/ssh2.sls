@@ -2,8 +2,6 @@
 
 include:
   - repos
-  - php-fpm.pecl
-
 
 pecl-pkg-deps:
   pkg:
@@ -11,7 +9,6 @@ pecl-pkg-deps:
     - pkgs:
       - autoconf
       - libssh2-1-dev
-
 
 pecl-install-ssh2:
   pecl.installed:

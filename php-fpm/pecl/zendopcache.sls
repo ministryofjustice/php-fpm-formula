@@ -2,7 +2,6 @@
 
 include:
   - repos
-  - php-fpm.pecl
 
 pecl-install-zendopcache:
   pecl.installed:
