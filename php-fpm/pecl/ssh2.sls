@@ -2,8 +2,6 @@
 
 include:
   - repos
-  - php-fpm.pecl
-
 
 pecl-pkg-deps:
   pkg:
@@ -12,9 +10,10 @@ pecl-pkg-deps:
       - autoconf
       - libssh2-1-dev
 
-
 pecl-install-ssh2:
-  cmd:
-    - run
-    - unless: /usr/local/bin/pecl list | grep ssh
-    - name: echo | /usr/local/bin/pecl install ssh2 channel://pecl.php.net/ssh2-0.12
+  pecl.installed:
+    - name: ssh2
+    - defaults: True
+{% if php_fpm.pecl.ssh2.version %}
+    - version: {{ php_fpm.pecl.ssh2.version }}
+{% endif %}

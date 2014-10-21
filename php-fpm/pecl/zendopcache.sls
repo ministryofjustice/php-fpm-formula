@@ -2,11 +2,11 @@
 
 include:
   - repos
-  - php-fpm.pecl
 
 pecl-install-zendopcache:
-  cmd:
-    - run
-    - unless: /usr/local/bin/pecl list | grep zendopcache
-    - name: pecl install ZendOpcache channel://pecl.php.net/ZendOpcache-7.0.3
-
+  pecl.installed:
+    - name: zendopcache
+    - defaults: True
+{% if php_fpm.pecl.zendopcache.version %}
+    - version: {{ php_fpm.pecl.zendopcache.version }}
+{% endif %}
