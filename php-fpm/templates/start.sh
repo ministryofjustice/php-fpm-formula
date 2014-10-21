@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
 {% from "php-fpm/map.jinja" import php_fpm with context %}
 
 set -e
-set -o pipefail
 
 # Ensure the php5-fpm directory exists.
 mkdir -p /var/run/php5-fpm/
@@ -20,4 +19,4 @@ chown {{ php_fpm.pools[pool_name].user }}.{{ php_fpm.pools[pool_name].user }} /v
 chown {{ php_fpm.pools[pool_name].user }}.{{ php_fpm.pools[pool_name].user }} /var/run/php5-fpm/php5-fpm-{{ pool_name }}.pid
 
 # Start PHP-FPM.
-/usr/local/sbin/php-fpm -F --fpm-config=/etc/php5/fpm/pool.d/{{ pool_name }}.conf
+exec /usr/local/sbin/php-fpm -F --fpm-config=/etc/php5/fpm/pool.d/{{ pool_name }}.conf
