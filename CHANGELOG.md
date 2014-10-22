@@ -1,3 +1,7 @@
+## CURRENT
+
+* Fix start.sh to exec php-fpm. Processes were being left behind when called as a subprocess.
+
 ## Version 1.0.3
 
 * Use state.pecl rather than relying on state.cmd calling out to pecl.
