@@ -1,4 +1,4 @@
-## CURRENT
+## Version 1.0.4
 
 * Fix start.sh to exec php-fpm. Processes were being left behind when called as a subprocess.
 
