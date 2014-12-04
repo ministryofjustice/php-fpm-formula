@@ -3,8 +3,9 @@
 include:
   - repos
 
-php-pear:
-  pkg.installed
+install_php_pear_for_xhprof:
+  pkg.installed:
+    - name: php-pear
 
 xhprof:
   pecl.installed:
