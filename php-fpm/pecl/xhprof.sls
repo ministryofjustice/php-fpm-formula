@@ -6,8 +6,8 @@ include:
 php-pear:
   pkg.installed
 
-pecl-install-xhprof:
-  cmd:
-    - run
-    - unless: /usr/local/bin/pecl list | grep xhprof
-    - name:   /usr/bin/printf "\n" | pecl install xhprof-beta
+xhprof:
+  pecl.installed:
+    - name: xhprof-beta
+    - require:
+      - pkg: php-pear

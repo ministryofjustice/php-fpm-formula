@@ -3,8 +3,5 @@
 include:
   - repos
 
-pecl-install-xdebug:
-  cmd:
-    - run
-    - unless: /usr/local/bin/pecl list | grep xdebug
-    - name:   /usr/bin/printf "\n" | pecl install xdebug
+xdebug:
+  pecl.installed
