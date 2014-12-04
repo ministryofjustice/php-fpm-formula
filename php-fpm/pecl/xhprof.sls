@@ -3,6 +3,9 @@
 include:
   - repos
 
+php-pear:
+  pkg.installed
+
 pecl-install-xhprof:
   cmd:
     - run
