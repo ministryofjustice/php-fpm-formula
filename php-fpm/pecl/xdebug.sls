@@ -3,5 +3,5 @@
 include:
   - repos
 
-imagick:
+xdebug:
   pecl.installed
