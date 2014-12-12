@@ -20,14 +20,6 @@
       - supervisord: supervise-{{pool_name}}
 
 
-# Ensure our php-fpm scripts directory exists.
-/srv/scripts/php-fpm:
-  file.directory:
-    - user: root
-    - group: root
-    - mode: 755
-    - makedirs: True
-
 # Create a start bash script for each service in the pool.
 /srv/scripts/php-fpm/start-{{pool_name}}.sh:
   file:
@@ -37,6 +29,7 @@
     - group: root
     - mode: 744
     - template: jinja
+    - makedirs: True
     - context:
       pool_name: {{ pool_name }}
 
