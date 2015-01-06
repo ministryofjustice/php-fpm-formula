@@ -4,4 +4,6 @@ include:
   - repos
 
 xdebug:
-  pecl.installed
+  pecl.installed:
+    - defaults: 'True'
+
