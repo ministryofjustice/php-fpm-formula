@@ -23,7 +23,7 @@ php:
   pkg:
     - installed
     - name: {{php_fpm.pkg}}
-
+    - skip_verify: {{ php_fpm.pkg_skip_verify }}
 
 /var/run/php5-fpm:
   file:
