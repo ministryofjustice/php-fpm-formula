@@ -1,4 +1,4 @@
-## Unreleased
+## Version 1.0.8
 
 * Add optional skip_verify with a sensible default False set via php_fpm.pkg_skip_verify.
 
