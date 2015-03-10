@@ -1,3 +1,7 @@
+## Unreleased
+
+* Add optional skip_verify with a sensible default False set via php_fpm.pkg_skip_verify.
+
 ## Version 1.0.5
 
 * Remove reference to shared dir in a macro: creates conflict if >1 deployed locally
