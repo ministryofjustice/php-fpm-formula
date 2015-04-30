@@ -1,3 +1,7 @@
+## Version 1.0.9
+
+* Added new options for a php package (pkg) and settings for pool socket listners (socketuser, socketgroup, socketmode).
+
 ## Version 1.0.8
 
 * Add optional skip_verify with a sensible default False set via php_fpm.pkg_skip_verify.
