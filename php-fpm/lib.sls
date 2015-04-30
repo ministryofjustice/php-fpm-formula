@@ -14,7 +14,7 @@
       pool_name: {{ pool_name }}
     - require:
       - pkg: nginx
-      - pkg: php
+      - pkg: {{php_fpm.pkg}}
       - user: {{ php_fpm.pools[pool_name].user }}
     - watch_in:
       - supervisord: supervise-{{pool_name}}

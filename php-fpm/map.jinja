@@ -17,6 +17,9 @@
                 'default': {
                     'user': 'nginx',
                     'group': 'nginx',
+                    'socketuser': 'root',
+                    'socketgroup': 'root',
+                    'socketmode': '0660',
                     'session': {
                         'save_path': '/var/lib/php/session',
                         'name': 'change_me',
