@@ -72,14 +72,6 @@ php:
     - require:
       - file: /etc/php5/fpm
 
-
-/etc/php5/fpm/php-fpm.conf:
-  file:
-    - absent
-    - requires:
-      - file: /etc/php5/fpm
-
-
 /var/lib/php/session:
   file:
     - directory
